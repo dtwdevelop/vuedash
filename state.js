@@ -14,8 +14,8 @@ Vue.use(Vuex);
                 gender: "Male",
                 title: "Main boss",
                 status : "InValid",
-                expire : "2099-03-26",
-                bundle: ""
+                expire : "2020-04-26",
+                bundle: "Vip"
             },
 
         ]

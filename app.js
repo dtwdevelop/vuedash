@@ -52,7 +52,8 @@ Vue.component('app-component', require('./components/App.vue').default);
 const routes = [
     { path: '/users', component: TableSearch },
     { path: '/', component: TableSearch },
-    { path: '/create', component: FormCreate }
+    { path: '/create', component: FormCreate },
+    {path: '*' , TableSearch}
 
 ]
 
