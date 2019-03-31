@@ -13,12 +13,28 @@ Vue.use(Vuex);
                 email: "admin@admin.com",
                 gender: "Male",
                 title: "Main boss",
-                status : "InValid",
+                status : true,
                 expire : "2020-04-26",
                 bundle: "Vip"
             },
+            {
+                id: 1,
+                name: "Client",
+                email: "admin@admin.com",
+                gender: "Male",
+                title: "Main boss",
+                status : true,
+                expire : "2019-04-26",
+                bundle: "Standart"
+            },
 
-        ]
+        ],
+        su: {
+                username: "mintol",
+                pass : "mintol1987",
+                active:   false
+            }
+
     },
     mutations: {
         delet(state,p) {
@@ -41,6 +57,9 @@ Vue.use(Vuex);
                 expire : u.selectedDate,
                 bundle: u.bundle
             })
+        },
+        add_active(state,u){
+            state.su.active  = u
         }
     }
 });

@@ -1,6 +1,6 @@
 <template>
-<div>
-    <md-table v-model="searched" md-sort="expire" md-sort-order="desc" md-card md-fixed-header>
+<div class="md-layout">
+    <md-table v-model="searched" md-sort="expire"  md-sort-order="desc" md-card  >
       <md-table-toolbar>
         <div class="md-toolbar-section-start">
          <md-button class="md-primary" @click.native="$router.push('/create')" >Create user</md-button>
@@ -14,7 +14,7 @@
       <md-table-empty-state
         md-label="No users found"
         :md-description="`No user found for this '${search}' Create first user`">
-        <md-button class="md-primary md-raised" @click="newUser">Create New User</md-button>
+        <md-button class="md-primary" @click.native="$router.push('/create')" >Create user</md-button>
       </md-table-empty-state>
 
       <md-table-row slot="md-table-row" slot-scope="{ item }">
@@ -25,10 +25,11 @@
 
          <md-table-cell md-label="Bundle" md-sort-by="bundle">{{ item.bundle}}</md-table-cell>
         <md-table-cell md-label="Job Title" md-sort-by="title">{{ item.title }}</md-table-cell>
-         <md-table-cell md-label="Created" md-sort-by="expire">{{item.expire | formatNormal }}</md-table-cell>
-        <md-table-cell md-label="Expire" md-sort-by="expire">{{ item.expire | formatDate }}</md-table-cell>
+         <md-table-cell md-label="Created" >{{item.expire | formatNormal }}</md-table-cell>
+        <md-table-cell md-label="Expire" >{{ item.expire | formatDate }}</md-table-cell>
          <md-table-cell md-label="Status" md-sort-by="status">{{ item.status }}</md-table-cell>
          <md-table-cell md-label="Action" >
+         <md-switch v-model="item.status">Update one month more</md-switch>
           <md-button class="md-primary" v-on:click="update(item.id)"> <md-icon>edit</md-icon></md-button>
           <md-button class="md-accent" v-on:click="del(item.id)"> <md-icon>delete</md-icon></md-button>
          </md-table-cell>
@@ -54,16 +55,17 @@ export default {
     data: () => ({
       search: null,
       searched: [],
-       selectedDate: null
+
+
 
     }),
     methods: {
-      newUser () {
-        window.alert('Noop')
-      },
+
       searchOnTable () {
         this.searched = searchByName(this.users, this.search)
       },
+
+
       del(id){
        this.$store.commit('delet',id);
 

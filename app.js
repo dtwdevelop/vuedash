@@ -14,6 +14,7 @@ import moment from 'moment' ;
 import VueRouter from 'vue-router';
 import TableSearch  from  './components/Table.vue';
 import FormCreate from  './components/Form.vue';
+import Login from  './components/Login.vue';
 //import Dialog from  './components/Dialog.vue'
 import  store  from  './state' ;
 
@@ -27,7 +28,7 @@ Vue.use(VueMaterial);
 Vue.filter('formatDate', function(value) {
     if (value) {
 
-        return moment(String(value)).day(30+2).format('YYYY/MM/DD');
+        return moment(String(value)).day(31).format('YYYY.MM.DD');
 
     }
 });
@@ -51,8 +52,9 @@ Vue.component('app-component', require('./components/App.vue').default);
 
 const routes = [
     { path: '/users', component: TableSearch },
-    { path: '/', component: TableSearch },
+    { path: '/', component: Login },
     { path: '/create', component: FormCreate },
+    { path: '/login', component: Login},
     {path: '*' , TableSearch}
 
 ]

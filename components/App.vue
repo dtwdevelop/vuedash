@@ -6,6 +6,15 @@
           <md-icon>menu</md-icon>
         </md-button>
         <span class="md-title">Dashboard</span>
+        <div class="md-toolbar-row">
+
+                    <md-button id="home"  @click.native="$router.push('/')" >Home</md-button>
+
+                     <md-button id="logout" v-if="$store.state.su.active"   @click="exit" >Logout</md-button>
+                    <md-button id="table" v-if="$store.state.su.active"   @click.native="$router.push('/users')" >Client</md-button>
+                    <md-button id="config" ></md-button>
+
+                </div>
       </md-app-toolbar>
 
       <md-app-drawer :md-active.sync="menuVisible">
@@ -18,7 +27,7 @@
                   </md-list-item>
           <md-list-item>
             <md-icon>people</md-icon>
-            <span class="md-list-item-text"><router-link to="/users">Users</router-link></span>
+            <span class="md-list-item-text"><router-link v-if="!$store.state.su.active"   to="/users">Users</router-link></span>
           </md-list-item>
 
           <md-list-item>
@@ -55,6 +64,12 @@ export default {
   name: 'Reveal',
   data: () => ({
     menuVisible: false
-  })
+  }),
+   methods: {
+   exit(){
+    this.$store.commit("add_active",false)
+    this.$router.push('/login')
+   }
+   }
 }
 </script>
