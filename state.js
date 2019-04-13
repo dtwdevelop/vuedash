@@ -3,41 +3,44 @@
  */
 window.Vue = require('vue');
 import Vuex from 'vuex' ;
+import moment from 'moment';
 Vue.use(Vuex);
  export  default    new Vuex.Store({
     state:{
         users : [
             {
                 id: 0,
-                name: "Admin",
+                name: "Boss",
                 email: "admin@admin.com",
-                gender: "Male",
-                title: "Main boss",
+                type : 1,
                 status : true,
-                expire : "2020-04-26",
+                created : "13-04-2019",
+                expire : "10-09-2020",
                 bundle: "Vip"
             },
             {
                 id: 1,
-                name: "Client",
+                name: "User",
                 email: "admin@admin.com",
-                gender: "Male",
-                title: "Main boss",
+                type : 1,
                 status : true,
-                expire : "2019-04-26",
-                bundle: "Standart"
+                created : "11-04-2019",
+                expire : "12-04-2019",
+                bundle: "Vip"
             },
+
+
 
         ],
         su: {
                 username: "mintol",
-                pass : "mintol1987",
+                pass : "mintol",
                 active:   false
             }
 
     },
     mutations: {
-        delet(state,p) {
+        delete(state,p) {
             // изменяем состояние
             var index  = state.users.findIndex(d => d.id == p)
             if(index  != 0 ) state.users.splice(index ,1)
@@ -45,16 +48,34 @@ Vue.use(Vuex);
         },
 
         add(state,u){
-            var id = state.users.length + 1;
+
+            let expire = null
+            const id = state.users.length + 1;
+            console.log(u.type)
+              switch(u.type){
+                  case 1: {
+                      expire = moment().add(1, 'days').format("MM-DD-YYYY");
+                      break;
+                  }
+                  case 2: {
+                      expire =  moment().add(6, 'months').format("MM-DD-YYYY");
+                      break;
+                  }
+                  case 3: {
+                      expire = moment().add(365, 'days').format("MM-DD-YYYY");
+
+                      break;
+                  }
+              }
+
+           
             state.users.push({
                 id: id,
-                name: u.firstName,
-                title: u.jobTitle,
+                name: u.name,
                 email: u.email,
-                gender: u.gender,
-                title: "Client",
-                status : "Valid",
-                expire : u.selectedDate,
+                status : u.status,
+                created : moment().format("MM-DD-YYYY"),
+                expire : expire,
                 bundle: u.bundle
             })
         },

@@ -8,8 +8,9 @@
 window.Vue = require('vue');
 //import VueMaterial from 'vue-material';
 import VueMaterial from 'vue-material' ;
-import 'vue-material/dist/vue-material.min.css';
-import 'vue-material/dist/theme/default-dark.css';
+import 'vuetify/dist/vuetify.min.css'
+//import 'vue-material/dist/vue-material.min.css';
+//import 'vue-material/dist/theme/default-dark.css';
 import moment from 'moment' ;
 import VueRouter from 'vue-router';
 import TableSearch  from  './components/Table.vue';
@@ -17,10 +18,11 @@ import FormCreate from  './components/Form.vue';
 import Login from  './components/Login.vue';
 //import Dialog from  './components/Dialog.vue'
 import  store  from  './state' ;
+import Vuetify from 'vuetify'
 
 
 Vue.use(VueRouter);
-Vue.use(VueMaterial);
+Vue.use(Vuetify);
 
 
 
@@ -52,7 +54,7 @@ Vue.component('app-component', require('./components/App.vue').default);
 
 const routes = [
     { path: '/users', component: TableSearch },
-    { path: '/', component: Login },
+    { path: '/', component: TableSearch },
     { path: '/create', component: FormCreate },
     { path: '/login', component: Login},
     {path: '*' , TableSearch}

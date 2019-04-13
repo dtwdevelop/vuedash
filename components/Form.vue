@@ -46,13 +46,23 @@
                                         <md-option value="Standart">Standart</md-option>
                                          <md-option value="Vip">Vip</md-option>
                                       </md-select>
-                                      <span class="md-error">The bundle packet is required</span>
+                                      <span class="md-error">Month is required</span>
                                     </md-field>
-                </div>
+                                     <md-field :class="getValidationClass('month')">
+                                                        <label for="gender">How much month</label>
+                                                        <md-select name="gender" id="gender" v-model="form.gender" md-dense :disabled="sending">
+                                                          <md-option></md-option>
+                                                          <md-option value="1">1 Moth</md-option>
+                                                          <md-option value="2">2 Month</md-option>
+                                                           <md-option value="3">3 Month</md-option>
+                                                        </md-select>
+                                                        <span class="md-error">The gender is required</span>
+                                                      </md-field>
+
 
 
               </div>
-
+</div>
               <md-field :class="getValidationClass('email')">
                 <label for="email">Email</label>
                 <md-input type="email" name="email" id="email" autocomplete="email" v-model="form.email" :disabled="sending" />
@@ -100,6 +110,7 @@
         bundle :null,
          email: null,
          selectedDate: null,
+         month: null,
       },
       userSaved: false,
       sending: false,
