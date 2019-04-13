@@ -68,7 +68,7 @@ Vue.use(Vuex);
                   }
               }
 
-           
+
             state.users.push({
                 id: id,
                 name: u.name,

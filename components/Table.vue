@@ -58,8 +58,9 @@
                     <td class="text-xs">{{ props.item.created }}</td>
                     <td class="text-xs">{{ props.item.expire }}</td>
                     <td class="text-xs">
-                        <v-icon v-if="props.item.expire < current_date">highlight_off</v-icon>
-                        <v-icon v-if="props.item.expire > current_date">highlight_on</v-icon>
+
+                        <v-icon v-if="!props.item.status">highlight_off</v-icon>
+                        <v-icon v-else>highlight_on</v-icon>
                     </td>
                     <td class="justify-center layout px-0">
                         <v-icon small class="mr-2" @click="editItem(props.item)">edit</v-icon>
@@ -85,7 +86,7 @@
                 modal: false,
                 menu2: false,
                 choice: false,
-                current_date:   moment().format("MM-DD-YYYY"),
+                current_date:   moment().format("DD-MM-YYYY"),
 
 
                 editedIndex: -1,
